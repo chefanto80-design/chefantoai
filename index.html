@@ -139,6 +139,19 @@ footer{padding:var(--s5) 0 var(--s4);font-size:.95rem;color:var(--muted)}
 .reveal{opacity:0;transform:translateY(18px);transition:opacity .8s ease,transform .8s ease}
 .reveal.in{opacity:1;transform:none}
 @media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}html{scroll-behavior:auto}.card,.btn{transition:none}}
+/* Chef Dogs AI: approved book cover in the card, full cover opens on click */
+.card .art .cover-btn{position:absolute;inset:0;width:100%;height:100%;padding:0;border:0;background:none;cursor:zoom-in;display:block;font:inherit}
+.card .art .cover-btn img{width:100%;height:100%;object-fit:cover;object-position:50% 45%;display:block;transition:transform .6s ease}
+.card:hover .cover-btn img,.cover-btn:focus-visible img{transform:scale(1.04)}
+.cover-btn:focus-visible{outline:3px solid var(--paprika);outline-offset:-3px}
+.cover-hint{position:absolute;left:.75rem;bottom:.75rem;background:var(--cream);color:var(--ink);font-family:var(--sans);font-size:.72rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:.35rem .7rem;border-radius:999px;box-shadow:0 2px 8px rgba(31,27,22,.25)}
+.cover-pop{position:fixed;inset:0;margin:auto;max-height:calc(100vh - 2rem);overflow:auto;border:0;padding:1rem 1rem 1.1rem;background:var(--cream);border-radius:var(--radius);box-shadow:0 30px 60px -20px rgba(31,27,22,.6);max-width:min(92vw,440px);text-align:center;color:var(--ink)}
+.cover-pop::backdrop{background:rgba(31,27,22,.6)}
+.cover-pop img{display:block;width:auto;max-width:100%;height:auto;max-height:62vh;margin:0 auto;border-radius:8px}
+.cover-pop p{font-family:var(--serif);font-style:italic;font-size:1.05rem;color:var(--ink);margin:.9rem 0 .7rem}
+.cover-pop button{font:inherit;font-size:.85rem;font-weight:600;background:none;border:1px solid var(--olive);color:var(--olive);padding:.45rem 1.1rem;border-radius:999px;cursor:pointer}
+.cover-pop button:hover,.cover-pop button:focus-visible{background:var(--olive);color:var(--cream)}
+@media (prefers-reduced-motion:reduce){.card .art .cover-btn img{transition:none}.card:hover .cover-btn img,.cover-btn:focus-visible img{transform:none}}
 </style>
 </head>
 <body>
@@ -352,23 +365,22 @@ footer{padding:var(--s5) 0 var(--s4);font-size:.95rem;color:var(--muted)}
 
       <!-- 6 -->
       <article class="card reveal">
-        <div class="art" role="img" aria-label="Friendly line drawing of a dog wearing a chef's hat beside a coloring book">
-          <svg viewBox="0 0 400 250" aria-hidden="true">
-            <rect width="400" height="250" fill="#E7DCCB"/>
-            <rect x="230" y="60" width="120" height="150" rx="8" fill="#FBF7F0" stroke="#3F4A2E" stroke-width="3"/>
-            <path d="M250 100 q40 -20 80 0 M250 130 h80 M250 150 h60" stroke="#C9B9A2" stroke-width="4" fill="none"/>
-            <ellipse cx="140" cy="160" rx="60" ry="55" fill="#C9955F"/>
-            <ellipse cx="92" cy="150" rx="18" ry="34" fill="#A8743F"/><ellipse cx="188" cy="150" rx="18" ry="34" fill="#A8743F"/>
-            <circle cx="122" cy="150" r="6" fill="#1F1B16"/><circle cx="158" cy="150" r="6" fill="#1F1B16"/>
-            <ellipse cx="140" cy="175" rx="12" ry="8" fill="#1F1B16"/>
-            <path d="M100 105 q-10 -40 25 -40 q15 -25 35 0 q35 0 25 40 z" fill="#FBF7F0" stroke="#3F4A2E" stroke-width="3"/>
-          </svg>
+        <div class="art">
+          <button class="cover-btn" type="button" popovertarget="luna-gia-cover" aria-label="See the full cover of Luna &amp; Gia's Little Kitchen">
+            <img src="assets/images/luna-gia-little-kitchen-cover.jpg" alt="" width="600" height="900" loading="lazy" decoding="async">
+            <span class="cover-hint" aria-hidden="true">See the cover</span>
+          </button>
         </div>
         <div class="body">
           <p class="tag">Books · Pets</p>
           <h3>Chef Dogs AI</h3>
-          <p>Children's coloring books and a pet-wellness brand starring my dogs as chef characters.</p>
+          <p>My Pomeranians, Luna and Gia, star as tiny chefs in <em>Luna &amp; Gia's Little Kitchen</em>: dog treats, recipes and coloring fun.</p>
           <div class="meta"><span>AI illustration · Amazon KDP</span><a href="https://pets.chefanto.com">Visit →</a></div>
+        </div>
+        <div class="cover-pop" id="luna-gia-cover" popover>
+          <img src="assets/images/luna-gia-little-kitchen-cover.jpg" alt="Book cover of Luna &amp; Gia's Little Kitchen: Dog Treats, Recipes &amp; Coloring Fun, by Chef Anto. Two Pomeranians in chef hats sit beside a bowl of homemade dog treats." width="600" height="900" loading="lazy" decoding="async">
+          <p>Made with love, for little paws.</p>
+          <button type="button" popovertarget="luna-gia-cover" popovertargetaction="hide">Close</button>
         </div>
       </article>
 
